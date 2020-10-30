@@ -1,16 +1,20 @@
-jobs:
-  example-job:
-    name: Save output
-    steps:
-      - shell: bash
-        run: |
-          expr 1 + 1 > output.log
-      - shell: bash
-        run: |
-          echo "########"
-          cat output.log
-      - name: Upload output file
-        uses: actions/upload-artifact@v1
-        with:
-          name: output-log-file
-          path: output.log
+name: Super-Linter
+
+# Run this workflow every time a new commit pushed to your repository
+on: push
+  jobs:
+    example-job:
+      name: Save output
+      steps:
+        - shell: bash
+          run: |
+            expr 1 + 1 > output.log
+        - shell: bash
+          run: |
+            echo "########"
+            cat output.log
+        - name: Upload output file
+          uses: actions/upload-artifact@v1
+          with:
+            name: output-log-file
+            path: output.log
