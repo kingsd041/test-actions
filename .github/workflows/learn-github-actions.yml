@@ -4,18 +4,12 @@ name: Super-Linter
 on: push
 jobs:
   example-job:
-    runs-on: ubuntu-latest
     name: Save output
-    steps:
-      - shell: bash
-        run: |
-          expr 1 + 1 > output.log
-      - shell: bash
-        run: |
-          cat  output.log
-          echo "#####"
-      - name: Upload output file
-        uses: actions/upload-artifact@v1
+      steps:
+      - uses: actions/checkout@v2
+      - run: mkdir -p path/to/artifact
+      - run: echo hello > path/to/artifact/world.txt
+      - uses: actions/upload-artifact@v2
         with:
-          name: output-log-file
-          path: output.log
+          name: my-artifact
+          path: path/to/artifact/world.txt
